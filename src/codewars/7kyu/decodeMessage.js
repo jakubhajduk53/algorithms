@@ -3,11 +3,13 @@
 function decode(message) {
   return message
     .split("")
-    .map((e) => {
-      if (e === "") return "";
-      const code = e.charCodeAt(0);
-      const mirroredCode = 122 - (code - 97);
-      return String.fromCharCode(mirroredCode);
+    .map((char) => {
+      const charCode = char.charCodeAt(0);
+      if (charCode >= 97 && charCode <= 122) {
+        const mirroredCode = 122 - (charCode - 97);
+        return String.fromCharCode(mirroredCode);
+      }
+      return char;
     })
     .join("");
 }
